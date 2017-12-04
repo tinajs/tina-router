@@ -52,12 +52,15 @@ export default function createRouterMiddleware (options) {
       return (this && (this.$route && this.$route.fullPath) || this.route) || getCurrentPages()[0].route
     }
 
+    function install () {
+      this.$router = router
+      this.$router.location = this::current()
+      this.$log('Router Middleware', 'Ready')
+    }
+
     return helpers.addHooks(properties, {
-      beforeLoad () {
-        this.$router = router
-        this.$router.location = this::current()
-        this.$log('Router Middleware', 'Ready')
-      }
+      beforeLoad: install,
+      beforeCreate: install,
     })
   }
 }
