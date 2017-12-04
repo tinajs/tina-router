@@ -56,6 +56,7 @@ export default function createRouterMiddleware (options) {
       beforeLoad () {
         this.$router = router
         this.$router.location = this::current()
+        this.$log('Router Middleware', 'Ready')
       }
     })
   }
