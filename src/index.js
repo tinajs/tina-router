@@ -49,7 +49,16 @@ export default function createRouterMiddleware (options) {
 
   return function RouterMiddleware (properties) {
     function current () {
-      return (this && (this.$route && this.$route.fullPath) || this.route) || getCurrentPages()[0].route
+      if (this && this.$route && this.$route.fullPath) {
+        return this.$route.fullPath
+      }
+      if (this && this.route) {
+        return this.route
+      }
+      let pages = getCurrentPages()
+      if (pages && pages[0] && pages[0].route) {
+        return pages[0].route
+      }
     }
 
     function install () {
