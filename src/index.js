@@ -1,5 +1,5 @@
 import { parse } from 'url'
-import { helpers } from '@tinajs/tina'
+import { appendHooks } from '@tinajs/tina'
 
 const wechat = wx
 
@@ -67,7 +67,7 @@ export default function createRouterMiddleware (options) {
       this.$log('Router Middleware', 'Ready')
     }
 
-    return helpers.addHooks(properties, {
+    return appendHooks(properties, {
       beforeLoad: install,
       beforeCreate: install,
     })
