@@ -1,3 +1,6 @@
+import compose from 'compose-function'
+import isEmpty from 'isempty'
+import querystring from 'querystring'
 import { parse } from 'url'
 import { appendHooks } from '@tinajs/tina'
 
@@ -47,29 +50,45 @@ class Router {
 export default function createRouterMiddleware (options) {
   let router = new Router(options)
 
-  return function RouterMiddleware (properties) {
-    function current () {
-      if (this && this.$route && this.$route.fullPath) {
-        return this.$route.fullPath
+  return compose(
+    function RouterMiddleware (properties) {
+      function current () {
+        if (this && this.$route && this.$route.fullPath) {
+          return this.$route.fullPath
+        }
+        if (this && this.route) {
+          return this.route
+        }
+        let pages = getCurrentPages()
+        if (pages && pages[0] && pages[0].route) {
+          return pages[0].route
+        }
       }
-      if (this && this.route) {
-        return this.route
-      }
-      let pages = getCurrentPages()
-      if (pages && pages[0] && pages[0].route) {
-        return pages[0].route
-      }
-    }
 
-    function install () {
-      this.$router = router
-      this.$router.location = this::current()
-      this.$log('Router Middleware', 'Ready')
-    }
+      function install () {
+        this.$router = router
+        this.$router.location = this::current()
+        this.$log('Router Middleware', 'Ready')
+      }
 
-    return appendHooks(properties, {
-      beforeLoad: install,
-      beforeCreate: install,
-    })
-  }
+      return appendHooks(properties, {
+        beforeLoad: install,
+        beforeCreate: install,
+      })
+    },
+    function $route (model) {
+      function install (options) {
+        this.$route = {
+          path: `/${this.route}`,
+          query: { ...options },
+          fullPath: isEmpty(options) ? `/${this.route}` : `/${this.route}?${querystring.stringify(options)}`,
+        }
+        this.$log('Route Middleware', 'Ready')
+      }
+
+      return appendHooks(model, {
+        beforeLoad: install,
+      })
+    },
+  )
 }

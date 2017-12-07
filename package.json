@@ -32,5 +32,9 @@
   },
   "peerDependencies": {
     "@tinajs/tina": "^0.0.1"
+  },
+  "dependencies": {
+    "compose-function": "^3.0.3",
+    "isempty": "0.0.1"
   }
 }
