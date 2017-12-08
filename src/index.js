@@ -46,11 +46,11 @@ class Router {
   }
 }
 
-export default function createRouterMiddleware (options) {
-  let router = new Router(options)
+export default function createRouterMiddleware (config) {
+  let router = new Router(config)
 
   return compose(
-    function RouterMiddleware (model, Model) {
+    function RouterMiddleware (options, Model) {
       function current () {
         if (this && this.$route && this.$route.fullPath) {
           return this.$route.fullPath
@@ -70,22 +70,22 @@ export default function createRouterMiddleware (options) {
         this.$log('Router Middleware', 'Ready')
       }
 
-      return Model.mix(model, {
+      return Model.mix(options, {
         beforeLoad: install,
         created: install,
       })
     },
-    function $route (model, Model) {
-      function install (options) {
+    function $route (options, Model) {
+      function install (query) {
         this.$route = {
           path: `/${this.route}`,
-          query: { ...options },
-          fullPath: isEmpty(options) ? `/${this.route}` : `/${this.route}?${querystring.stringify(options)}`,
+          query: { ...query },
+          fullPath: isEmpty(query) ? `/${this.route}` : `/${this.route}?${querystring.stringify(query)}`,
         }
         this.$log('Route Middleware', 'Ready')
       }
 
-      return Model.mix(model, {
+      return Model.mix(options, {
         beforeLoad: install,
       })
     },
