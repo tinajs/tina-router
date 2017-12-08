@@ -73,7 +73,7 @@ export default function createRouterMiddleware (options) {
 
       return appendHooks(properties, {
         beforeLoad: install,
-        beforeCreate: install,
+        created: install,
       })
     },
     function $route (model) {
