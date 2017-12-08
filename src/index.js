@@ -1,8 +1,7 @@
-import compose from 'compose-function'
 import isEmpty from 'isempty'
 import querystring from 'querystring'
 import { parse } from 'url'
-import { appendHooks } from '@tinajs/tina'
+import { compose } from '@tinajs/tina'
 
 const wechat = wx
 
@@ -51,7 +50,7 @@ export default function createRouterMiddleware (options) {
   let router = new Router(options)
 
   return compose(
-    function RouterMiddleware (properties) {
+    function RouterMiddleware (model, Model) {
       function current () {
         if (this && this.$route && this.$route.fullPath) {
           return this.$route.fullPath
@@ -71,12 +70,12 @@ export default function createRouterMiddleware (options) {
         this.$log('Router Middleware', 'Ready')
       }
 
-      return appendHooks(properties, {
+      return Model.mix(model, {
         beforeLoad: install,
         created: install,
       })
     },
-    function $route (model) {
+    function $route (model, Model) {
       function install (options) {
         this.$route = {
           path: `/${this.route}`,
@@ -86,7 +85,7 @@ export default function createRouterMiddleware (options) {
         this.$log('Route Middleware', 'Ready')
       }
 
-      return appendHooks(model, {
+      return Model.mix(model, {
         beforeLoad: install,
       })
     },
