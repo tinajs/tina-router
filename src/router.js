@@ -1,6 +1,5 @@
 import { parse } from 'url'
-
-const wechat = wx
+import wechat from './wechat'
 
 class Router {
   _tabs = []
