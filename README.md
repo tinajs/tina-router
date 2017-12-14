@@ -187,4 +187,4 @@ Page.define({
   ```
 
 ## License
-MIT @ [yelo](https://github.com/imyelo)
+Apache-2.0 @ [yelo](https://github.com/imyelo)
