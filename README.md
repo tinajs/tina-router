@@ -1,10 +1,7 @@
 # tina-router
 
-## 为什么
-微信官方小程序框架 (MINA) 中集成了基础的[路由功能](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/route.html)，但其 API 对比主流的 web 前端框架而言还是稍显不足。
-
 ## 快速上手
-我们假设你已经在使用 **tina** 和 **mina-webpack** 开发小程序项目。如果你对以上库还不熟悉，可以在 [tina](https://github.com/tinajs/tina) 和 [mina-webpack](https://github.com/tinajs/mina-webpack) 的仓库了解更多信息。
+我们假设你已经在使用 [Tina](https://github.com/tinajs/tina) 和 [mina-webpack](https://github.com/tinajs/mina-webpack) 开发小程序项目。
 
 ### 安装
 ```bash
@@ -129,6 +126,9 @@ Page.define({
 
   前往具体的路径。
 
+  当目标路径属于导航栏标签 *(tabs)* 时，实际触发 ``switchTab``
+  *(需在创建混合对象时传入导航栏页面数组)* 。
+
   ```javascript
   Page({
     onLoad () {
@@ -144,6 +144,9 @@ Page.define({
 - 说明:
 
   重定向具体的路径。
+
+  当目标路径属于导航栏标签 *(tabs)* 时，实际触发 ``switchTab``
+  *(需在创建混合对象时传入导航栏页面数组。)* 。
 
   ```javascript
   Page({
