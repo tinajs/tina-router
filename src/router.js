@@ -17,7 +17,7 @@ class Router {
 
   navigate (location) {
     if (this.isTab(location)) {
-      return wechat.switchTab({
+      return wechat.reLaunch({
         url: location,
       })
     }
@@ -28,7 +28,7 @@ class Router {
 
   redirect (location) {
     if (this.isTab(location)) {
-      return wechat.switchTab({
+      return wechat.reLaunch({
         url: location,
       })
     }
