@@ -1,6 +1,10 @@
 # tina-router
 > An elegant enhanced router for Tina.js based Wechat-Mini-Program
 
+[![npm](https://img.shields.io/npm/v/@tinajs/tina-router.svg?style=flat-square)](https://www.npmjs.com/package/@tinajs/tina-router)
+[![license](https://img.shields.io/github/license/tinajs/tina-router.svg?style=flat-square)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 ## 快速上手
 我们假设你已经在使用 [Tina](https://github.com/tinajs/tina) 和 [mina-webpack](https://github.com/tinajs/mina-webpack) 开发小程序项目。
 
