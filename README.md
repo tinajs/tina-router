@@ -1,4 +1,5 @@
 # tina-router
+> An elegant enhanced router for Tina.js based Wechat-Mini-Program
 
 ## 快速上手
 我们假设你已经在使用 [Tina](https://github.com/tinajs/tina) 和 [mina-webpack](https://github.com/tinajs/mina-webpack) 开发小程序项目。

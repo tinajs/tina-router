@@ -1,10 +1,21 @@
 {
   "name": "@tinajs/tina-router",
   "version": "0.1.0",
-  "description": "",
+  "description": "An elegant enhanced router for Tina.js based Wechat-Mini-Program",
   "main": "dist/tina-router.js",
   "author": "yelo",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "url": "tinajs/tina-router",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/tinajs/tina-router/issues"
+  },
+  "homepage": "https://github.com/tinajs/tina-router#readme",
   "scripts": {
     "start": "rollup -c -w",
     "clean": "rimraf ./dist",
