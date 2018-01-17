@@ -5,6 +5,9 @@
   "main": "dist/tina-router.js",
   "author": "yelo",
   "license": "Apache-2.0",
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },
