@@ -17,18 +17,15 @@ npm i --save @tinajs/tina-router
 /**
  * <script> in /app.mina
  */
-import { Page, Component } from '@tinajs/tina'
-import createRouterMixin from '@tinajs/tina-router'
+import Tina from '@tinajs/tina'
+import router from '@tinajs/tina-router'
 
-const router = createRouterMixin({
+Tina.use(router, {
   tabs: [
     'page/home',
     'page/mine',
   ],
 })
-
-Page.mixin(router)
-Component.mixin(router)
 
 App(......)
 ```
@@ -54,6 +51,14 @@ Page.define({
 ```
 
 ## API
+### Plugin.install
+- 参数:
+  - ``{Object} Tina`` Tina
+  - ``{Object} config`` 同 ``createRouterMixin`` 中的参数 ``config``
+- 说明:
+
+  以插件的形式安装入 Tina。
+
 ### createRouterMixin
 - 参数:
   - ``{Object} config``
