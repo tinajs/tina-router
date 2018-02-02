@@ -44,6 +44,7 @@
     "uglify-js": "^3.2.1"
   },
   "dependencies": {
-    "isempty": "0.0.1"
+    "isempty": "0.0.1",
+    "replace-ext": "^1.0.0"
   }
 }

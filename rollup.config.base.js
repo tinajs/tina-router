@@ -7,6 +7,10 @@ const cssExportMap = {}
 
 export default {
   input: 'src/index.js',
+  output: {
+    exports: 'named',
+  },
+  context: 'this',
   plugins: [
     builtins(),
     babel({
