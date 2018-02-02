@@ -20,12 +20,7 @@ npm i --save @tinajs/tina-router
 import Tina from '@tinajs/tina'
 import router from '@tinajs/tina-router'
 
-Tina.use(router, {
-  tabs: [
-    'page/home',
-    'page/mine',
-  ],
-})
+Tina.use(router)
 
 App(......)
 ```
@@ -50,6 +45,30 @@ Page.define({
 })
 ```
 
+## 常见问题
+### 无法正确地自动获取底部 tab 列表
+若 tina-router 无法正确地自动获取底部 tab 列表，请尝试将微信开发者工具的 "ES6 转 ES5" 功能关闭：
+
+![](./_medias/troubleshoot-1.png)
+
+若仍不生效，可以在注册插件时手动设置：
+```javascript
+/**
+ * <script> in /app.mina
+ */
+import Tina from '@tinajs/tina'
+import router from '@tinajs/tina-router'
+
+Tina.use(router, {
+  tabs: [
+    'page/home',
+    'page/mine',
+  ],
+})
+
+App(......)
+```
+
 ## API
 ### Plugin.install
 - 参数:
@@ -63,6 +82,9 @@ Page.define({
 - 参数:
   - ``{Object} config``
     - ``{Array <String>} tabs`` MINA [tabbar](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#tabbar) 中的所有页面路径。
+
+      插件默认将自动从全局配置中读取该信息。
+
 - 说明:
 
   创建混合对象。
