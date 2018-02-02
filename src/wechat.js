@@ -1,6 +1,4 @@
-const global = {
-  wx,
-}
+import { globals } from './utils'
 
 function promisify (api) {
   return (options) => new Promise((resolve, reject) => {
@@ -26,7 +24,7 @@ const APIS = ['switchTab', 'redirectTo', 'navigateTo', 'navigateBack']
 
 const wechat = {}
 APIS.forEach((name) => {
-  wechat[name] = promisify(global.wx[name])
+  wechat[name] = promisify(globals.wx[name])
 })
 
 export default wechat

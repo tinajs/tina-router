@@ -2,6 +2,7 @@ import extname from 'replace-ext'
 
 export const globals = {
   global: this || global,
+  wx,
 }
 
 export function parseTabsFromGlobal (global) {
