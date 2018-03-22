@@ -20,7 +20,7 @@ function promisify (api) {
   })
 }
 
-const APIS = ['switchTab', 'redirectTo', 'navigateTo', 'navigateBack']
+const APIS = ['switchTab', 'redirectTo', 'navigateTo', 'navigateBack', 'reLaunch']
 
 const wechat = {}
 APIS.forEach((name) => {
