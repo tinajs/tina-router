@@ -113,10 +113,11 @@ App(......)
   ```
 
 ##### query
-- 类型: ``String``
+- 类型: ``Object``
 - 说明:
 
   当前页面的参数对象。
+  与小程序中 `onLoad(Object query)` 传入的  `query` 不同，这里的 `$route.query` 会对各个值进行 `decodeURIComponent` 解码。
 
   ```javascript
   // /pages/demo?foo=bar
