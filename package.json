@@ -1,6 +1,6 @@
 {
   "name": "@tinajs/tina-router",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "An elegant enhanced router for Tina.js based Wechat-Mini-Program",
   "main": "dist/tina-router.js",
   "author": "yelo",
