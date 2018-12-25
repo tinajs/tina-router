@@ -15,26 +15,24 @@ class Router {
     return ~this._tabs.indexOf(parse(location.slice(1)).pathname)
   }
 
-  navigate (location) {
+  _router (type, location, params = {}) {
+    let url = location + '?' + Object.keys(params).map(key => key + '=' + params[key]).join('&')
     if (this.isTab(location)) {
-      return wechat.reLaunch({
-        url: location,
-      })
+      return wechat.reLaunch({ url })
     }
-    return wechat.navigateTo({
-      url: location,
-    })
+    return wechat[type]({ url })
+  }
+
+  navigate (location, params) {
+    this._router('navigateTo', location, params)
+  }
+
+  switch (location) {
+    this._router('redirectTo', location, params)
   }
 
   redirect (location) {
-    if (this.isTab(location)) {
-      return wechat.reLaunch({
-        url: location,
-      })
-    }
-    return wechat.redirectTo({
-      url: location,
-    })
+    this._router('switchTab', location, params)
   }
 
   back () {
