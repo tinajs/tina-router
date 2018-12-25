@@ -27,11 +27,11 @@ class Router {
     this._router('navigateTo', location, params)
   }
 
-  switch (location) {
+  redirect (location) {
     this._router('redirectTo', location, params)
   }
 
-  redirect (location) {
+  switchTab (location) {
     this._router('switchTab', location, params)
   }
 
