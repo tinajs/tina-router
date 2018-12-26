@@ -1,8 +1,9 @@
 import querystring from 'querystring'
+import { encode } from './utils'
 
 export default function $route (options, Model) {
   function install (query) {
-    const qs = Object.keys(query).map((key) => `${key}=${query[key]}`).join('&')
+    const qs = Object.keys(query).map((key) => `${encode(key)}=${query[key]}`).join('&')
     this.$route = {
       path: `/${this.route}`,
       query: querystring.parse(qs),
