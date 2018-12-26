@@ -151,9 +151,10 @@ App(......)
   Router 实例。
 
 ### Router 实例
-##### navigate(location)
+##### navigate(location, query)
 - 参数:
   - ``{String} location`` 前往的路径
+  - ``{Object} query`` query 对象
 - 返回值: ``Promise``
 - 说明:
 
@@ -165,14 +166,15 @@ App(......)
   ```javascript
   Page.define({
     onLoad () {
-      this.$router.navigate('/page/home')
+      this.$router.navigate('/page/home', { message: 'hi' })
     },
   })
   ```
 
-##### redirect(location)
+##### redirect(location, query)
 - 参数:
   - ``{String} location`` 重定向的路径
+  - ``{Object} query`` query 对象
 - 返回值: ``Promise``
 - 说明:
 
@@ -188,6 +190,7 @@ App(......)
     },
   })
   ```
+
 ##### back()
 - 参数:
   - 无
@@ -203,6 +206,7 @@ App(......)
     },
   })
   ```
+
 ##### isTab(location)
 - 参数:
   - ``{String} location`` 路径
