@@ -27,7 +27,7 @@ class Router {
     this._router('navigateTo', location, params)
   }
 
-  redirect (location) {
+  redirect (location, params) {
     this._router('redirectTo', location, params)
   }
 
