@@ -17,7 +17,7 @@ class Router {
 
   _router (type, location, params = {}) {
     let url = location + '?' + Object.keys(params).map(key => key + '=' + params[key]).join('&')
-    if (type !== 'switchTab' && this.isTab(location)) {
+    if (this.isTab(location)) {
       return wechat.reLaunch({ url })
     }
     return wechat[type]({ url })
@@ -32,7 +32,7 @@ class Router {
   }
 
   switchTab (location) {
-    this._router('switchTab', location, params)
+    wechat.switchTab(location)
   }
 
   back () {
