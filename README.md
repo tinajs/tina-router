@@ -191,6 +191,22 @@ App(......)
   })
   ```
 
+##### switchTab(location)
+- 参数:
+  - ``{String} location`` 重定向的路径
+- 返回值: ``Promise``
+- 说明:
+
+  切换到具体的一级页面 (属于导航栏标签的页面)。该方法运行效率更高，但不支持 query 参数。
+
+  ```javascript
+  Page.define({
+    onLoad () {
+      this.$router.switchTab('/page/login')
+    },
+  })
+  ```
+
 ##### back()
 - 参数:
   - 无
