@@ -41,7 +41,7 @@ Page.define({
     toLogin () {
       this.$router.navigate(`/pages/login?from=${this.$route.fullPath}`)
     },
-  }
+  },
 })
 ```
 
@@ -104,7 +104,7 @@ App(......)
 
   ```javascript
   // /pages/demo?foo=bar
-  Page({
+  Page.define({
     onLoad () {
       console.log(this.$route.path)
       // '/page/demo'
@@ -121,7 +121,7 @@ App(......)
 
   ```javascript
   // /pages/demo?foo=bar
-  Page({
+  Page.define({
     onLoad () {
       console.log(this.$route.query)
       // { foo: 'bar }
@@ -137,7 +137,7 @@ App(......)
 
   ```javascript
   // /pages/demo?foo=bar
-  Page({
+  Page.define({
     onLoad () {
       console.log(this.$route.fullPath)
       // /pages/demo?full=bar
@@ -163,10 +163,10 @@ App(......)
   *(需正确地设置导航栏页面列表)* 。
 
   ```javascript
-  Page({
+  Page.define({
     onLoad () {
       this.$router.navigate('/page/home')
-    }
+    },
   })
   ```
 
@@ -182,10 +182,10 @@ App(......)
   *(需正确地设置导航栏页面列表)* 。
 
   ```javascript
-  Page({
+  Page.define({
     onLoad () {
       this.$router.redirect('/page/login')
-    }
+    },
   })
   ```
 ##### back()
@@ -197,10 +197,10 @@ App(......)
   后退。
 
   ```javascript
-  Page({
+  Page.define({
     onLoad () {
       this.$router.back()
-    }
+    },
   })
   ```
 ##### isTab(location)
@@ -213,12 +213,12 @@ App(......)
   *需正确地设置导航栏页面列表*
 
   ```javascript
-  Page({
+  Page.define({
     onLoad () {
       if (this.$router.isTab('/page/home')) {
         console.log('homepage is one of the tabs')
       }
-    }
+    },
   })
   ```
 
