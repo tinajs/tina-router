@@ -17,7 +17,7 @@ class Router {
   }
 
   _router (type, location, query = {}) {
-    let qs = Object.keys(query).map(key => encode(key) + '=' + encode(query[key])).join('&')
+    let qs = Object.keys(query).map(key => `${encode(key)}=${encode(query[key])}`).join('&')
     let url = qs ? `${location}?${qs}` : location
     if (this.isTab(location)) {
       return wechat.reLaunch({ url })
