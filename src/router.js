@@ -1,5 +1,6 @@
 import { parse } from 'url'
 import wechat from './wechat'
+import { encode } from './utils'
 
 class Router {
   _tabs = []
@@ -16,7 +17,7 @@ class Router {
   }
 
   _router (type, location, query = {}) {
-    let qs = Object.keys(query).map(key => key + '=' + query[key]).join('&')
+    let qs = Object.keys(query).map(key => key + '=' + encode(query[key])).join('&')
     let url = qs ? `${location}?${qs}` : location
     if (this.isTab(location)) {
       return wechat.reLaunch({ url })

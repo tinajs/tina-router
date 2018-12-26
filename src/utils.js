@@ -1,5 +1,9 @@
 import extname from 'replace-ext'
 
+const encodeReserveRE = /[!'()*]/g
+const encodeReserveReplacer = c => '%' + c.charCodeAt(0).toString(16)
+const commaRE = /%2C/g
+
 export const globals = {
   global: this || global,
   wx,
@@ -20,3 +24,11 @@ export function parseTabsFromGlobal (global) {
     return extname(pagePath, '')
   })
 }
+
+// forked from https://github.com/vuejs/vue-router/blob/ea8cb474f869a5a12a095fcb5989c45c68971d14/src/util/query.js
+// fixed encodeURIComponent which is more conformant to RFC3986:
+// - escapes [!'()*]
+// - preserve commas
+export const encode = str => encodeURIComponent(str)
+  .replace(encodeReserveRE, encodeReserveReplacer)
+  .replace(commaRE, ',')
