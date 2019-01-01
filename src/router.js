@@ -34,7 +34,7 @@ class Router {
   }
 
   switchTab (location) {
-    wechat.switchTab(location)
+    wechat.switchTab({ url: location })
   }
 
   back () {
