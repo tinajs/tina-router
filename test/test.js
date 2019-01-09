@@ -3,7 +3,6 @@ import { test } from 'ava'
 import { parseTabsFromGlobal } from '..'
 
 test('parse config from global', (t) => {
-  global.wx = {}
   const glob = {
     __wxConfig: {
       tabBar: {
