@@ -7,6 +7,7 @@ const commaRE = /%2C/g
 export const globals = {
   global: this || global,
   wx,
+  getCurrentPages,
 }
 
 export function parseTabsFromGlobal (global) {

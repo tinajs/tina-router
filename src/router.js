@@ -1,6 +1,6 @@
 import { parse } from 'url'
 import wechat from './wechat'
-import { encode } from './utils'
+import { encode, globals } from './utils'
 
 class Router {
   _tabs = []
@@ -53,7 +53,7 @@ export default function createRouterMixin (config) {
       if (this && this.route) {
         return this.route
       }
-      let pages = getCurrentPages()
+      let pages = globals.getCurrentPages()
       if (pages) {
         let last = pages[pages.length - 1]
         if (last && last.route) {
