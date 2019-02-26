@@ -54,8 +54,11 @@ export default function createRouterMixin (config) {
         return this.route
       }
       let pages = getCurrentPages()
-      if (pages && pages[0] && pages[0].route) {
-        return pages[0].route
+      if (pages) {
+        let last = pages[pages.length - 1]
+        if (last && last.route) {
+          return last.route
+        }
       }
     }
 
