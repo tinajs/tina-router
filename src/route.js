@@ -3,7 +3,14 @@ import { encode } from './utils'
 
 export default function $route (options, Model) {
   function install (query) {
-    const qs = Object.keys(query).map((key) => `${encode(key)}=${query[key]}`).join('&')
+    let qs
+
+    if (process.env.MINA_PLATFORM === 'ant') {
+      qs = Object.keys(query).map((key) => `${encode(key)}=${encode(query[key])}`).join('&')
+    } else {
+      qs = Object.keys(query).map((key) => `${encode(key)}=${query[key]}`).join('&')
+    }
+
     this.$route = {
       path: `/${this.route}`,
       query: querystring.parse(qs),
