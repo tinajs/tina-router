@@ -1,19 +1,16 @@
-import querystring from 'querystring'
 import { encode } from './utils'
 
 export default function $route (options, Model) {
   function install (query) {
-    let qs
-
-    if (process.env.MINA_PLATFORM === 'ant') {
-      qs = Object.keys(query).map((key) => `${encode(key)}=${encode(query[key])}`).join('&')
-    } else {
-      qs = Object.keys(query).map((key) => `${encode(key)}=${query[key]}`).join('&')
-    }
-
+    const qs = Object.keys(query).map((key) => `${encode(key)}=${query[key]}`).join('&')
+    Object.keys(query).forEach(key => {
+      try {
+        query[key] = JSON.parse(decodeURIComponent(query[key]))
+      } catch (e) { }
+    })
     this.$route = {
       path: `/${this.route}`,
-      query: querystring.parse(qs),
+      query,
       fullPath: qs ? `/${this.route}?${qs}` : `/${this.route}`,
     }
     this.$log('Route Middleware', 'Ready')
