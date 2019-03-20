@@ -17,7 +17,7 @@ class Router {
   }
 
   _router (type, location, query = {}) {
-    let qs = Object.keys(query).map(key => `${encode(key)}=${encode(JSON.stringify(query[key]))}`).join('&')
+    let qs = Object.keys(query).map(key => `${encode(key)}=${encode(query[key])}`).join('&')
     let url = qs ? `${location}?${qs}` : location
     if (this.isTab(location)) type = 'reLaunch'
     return new Promise((resolve, reject) => wechat[type]({ url, success: resolve, fail: reject }))
