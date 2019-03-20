@@ -17,12 +17,10 @@ class Router {
   }
 
   _router (type, location, query = {}) {
-    let qs = Object.keys(query).map(key => `${encode(key)}=${encode(query[key])}`).join('&')
+    let qs = Object.keys(query).map(key => `${encode(key)}=${encode(JSON.stringify(query[key]))}`).join('&')
     let url = qs ? `${location}?${qs}` : location
-    if (this.isTab(location)) {
-      return wechat.reLaunch({ url })
-    }
-    return wechat[type]({ url })
+    if (this.isTab(location)) type = 'reLaunch'
+    return new Promise((resolve, reject) => wechat[type]({ url, success: resolve, fail: reject }))
   }
 
   navigate (location, query) {
@@ -34,11 +32,11 @@ class Router {
   }
 
   switchTab (location) {
-    wechat.switchTab({ url: location })
+    this._router('switchTab', location)
   }
 
-  back () {
-    return wechat.navigateBack()
+  back (delta) {
+    return new Promise((resolve, reject) => wechat.navigateBack({ delta, success: resolve, fail: reject }))
   }
 }
 
