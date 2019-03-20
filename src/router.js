@@ -20,7 +20,7 @@ class Router {
     let qs = Object.keys(query).map(key => `${encode(key)}=${encode(query[key])}`).join('&')
     let url = qs ? `${location}?${qs}` : location
     if (this.isTab(location)) type = 'reLaunch'
-    return new Promise((resolve, reject) => wechat[type]({ url, success: resolve, fail: reject }))
+    return new Promise((success, fail) => wechat[type]({ url, success, fail }))
   }
 
   navigate (location, query) {
@@ -36,7 +36,7 @@ class Router {
   }
 
   back (delta) {
-    return new Promise((resolve, reject) => wechat.navigateBack({ delta, success: resolve, fail: reject }))
+    return new Promise((success, fail) => wechat.navigateBack({ delta, success, fail }))
   }
 }
 
