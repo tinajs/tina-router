@@ -26,15 +26,15 @@ class Router {
   }
 
   navigate (location, query) {
-    this._router('navigateTo', location, query)
+    return this._router('navigateTo', location, query)
   }
 
   redirect (location, query) {
-    this._router('redirectTo', location, query)
+    return this._router('redirectTo', location, query)
   }
 
   switchTab (location) {
-    wechat.switchTab({ url: location })
+    return wechat.switchTab({ url: location })
   }
 
   back () {
