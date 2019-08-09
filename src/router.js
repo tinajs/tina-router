@@ -22,7 +22,7 @@ class Router {
     if (this.isTab(location)) {
       return wechat.reLaunch({ url })
     }
-    return wechat[type]({ url })
+    return wechat[type]({ url }).catch(() => wechat.redirectTo({ url }))
   }
 
   navigate (location, query) {
